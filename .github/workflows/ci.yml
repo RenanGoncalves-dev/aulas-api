@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v7
+
+      - name: Configurar .NET 10
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Restaurar dependências
+        run: dotnet restore
+
+      - name: Compilar (Release com warnings como erro)
+        run: dotnet build -c Release --no-restore -warnaserror
+
+      - name: Executar testes
+        run: dotnet test -c Release --no-build --verbosity normal

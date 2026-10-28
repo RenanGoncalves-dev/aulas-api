@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+.git/
+.github/
+front/
+Aulas.Testes/
+*.md
+*.http
