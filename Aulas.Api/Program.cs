@@ -1,5 +1,6 @@
 using System.Text;
 using Aulas.Api.Dados;
+using Aulas.Api.Servicos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -55,6 +56,9 @@ builder.Services
     });
 
 builder.Services.AddAuthorization();
+
+builder.Services.AddScoped<IAuthServico, AuthServico>();
+builder.Services.AddScoped<IProfessorServico, ProfessorServico>();
 
 var corsOrigensConfig = builder.Configuration["Cors:Origens"];
 var origens = string.IsNullOrWhiteSpace(corsOrigensConfig)
