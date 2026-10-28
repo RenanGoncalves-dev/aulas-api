@@ -1,0 +1,230 @@
+### ============================================================================
+### AULAS PARTICULARES API — Suíte Completa de Testes HTTP (REST Client VS Code)
+### ============================================================================
+@baseUrl = http://localhost:5000
+@adminEmail = admin@exemplo.com
+@adminSenha = Admin@2026SecurePassword
+@clienteAEmail = ana@exemplo.com
+@clienteASenha = Cliente@123
+@clienteBEmail = bruno@exemplo.com
+@clienteBSenha = Cliente@123
+
+### 1. Saúde da Aplicação (200 OK)
+GET {{baseUrl}}/health
+Accept: application/json
+
+### 2. Versão e Ambiente da API (200 OK)
+GET {{baseUrl}}/api/versao
+Accept: application/json
+
+### 3. Listagem Pública Paginada de Professores (200 OK)
+GET {{baseUrl}}/api/professores?pagina=1&tamanho=5
+Accept: application/json
+
+### 4. Busca Pública de Professores por Termo Existente (200 OK)
+GET {{baseUrl}}/api/professores?busca=Matemática&pagina=1&tamanho=5
+Accept: application/json
+
+### 5. Busca Pública por Termo Inexistente — Retorna Lista Vazia e Total 0 (200 OK)
+GET {{baseUrl}}/api/professores?busca=AstrofisicaQuantica&pagina=1&tamanho=5
+Accept: application/json
+
+### 6. Detalhe de Professor por ID Existente (200 OK)
+GET {{baseUrl}}/api/professores/1
+Accept: application/json
+
+### 7. Detalhe de Professor Inexistente — ProblemDetails (404 Not Found)
+GET {{baseUrl}}/api/professores/9999
+Accept: application/json
+
+### 8. Rota Protegida Sem Token JWT (401 Unauthorized)
+GET {{baseUrl}}/api/aulas
+Accept: application/json
+
+### ============================================================================
+### AUTENTICAÇÃO (LOGIN ADMIN, CLIENTE A, CLIENTE B E REGISTRO)
+### ============================================================================
+
+### 9. Login como Administrador (200 OK)
+# @name loginAdmin
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{adminEmail}}",
+  "senha": "{{adminSenha}}"
+}
+
+###
+@tokenAdmin = {{loginAdmin.response.body.token}}
+
+### 10. Login como Cliente A — Ana (200 OK)
+# @name loginClienteA
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{clienteAEmail}}",
+  "senha": "{{clienteASenha}}"
+}
+
+###
+@tokenClienteA = {{loginClienteA.response.body.token}}
+
+### 11. Login como Cliente B — Bruno (200 OK)
+# @name loginClienteB
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{clienteBEmail}}",
+  "senha": "{{clienteBSenha}}"
+}
+
+###
+@tokenClienteB = {{loginClienteB.response.body.token}}
+
+### 12. Login com Credenciais Inválidas — ProblemDetails (401 Unauthorized)
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{clienteAEmail}}",
+  "senha": "SenhaIncorreta999!"
+}
+
+### 13. Registro de Novo Cliente (201 Created — ou 409 se já registrado)
+POST {{baseUrl}}/api/auth/registro
+Content-Type: application/json
+
+{
+  "nome": "Novo Aluno Teste",
+  "email": "novo.aluno@exemplo.com",
+  "senha": "Senha123!"
+}
+
+### ============================================================================
+### GESTÃO DE PROFESSORES (AUTORIZAÇÃO POR PAPEL: ADMIN vs CLIENTE)
+### ============================================================================
+
+### 14. Tentativa de Cliente Criar Professor — Acesso Negado (403 Forbidden)
+POST {{baseUrl}}/api/professores
+Authorization: Bearer {{tokenClienteA}}
+Content-Type: application/json
+
+{
+  "nome": "Professor Não Autorizado",
+  "materia": "Violino",
+  "descricao": "Tentativa de criação por usuário com papel cliente.",
+  "valorHora": 100.00,
+  "duracaoMinutos": 60,
+  "ativo": true
+}
+
+### 15. Criação de Professor com Corpo Inválido pelo Admin (400 Bad Request)
+POST {{baseUrl}}/api/professores
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nome": "",
+  "materia": "",
+  "descricao": "Curta",
+  "valorHora": -10,
+  "duracaoMinutos": 5,
+  "ativo": true
+}
+
+### 16. Criação de Professor Válido pelo Admin (201 Created + Header Location)
+# @name criarProfessor
+POST {{baseUrl}}/api/professores
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Albuquerque",
+  "materia": "Violoncelo Erudito",
+  "descricao": "Mestra em performance musical, aulas de técnica de arco e repertório clássico.",
+  "valorHora": 130.00,
+  "duracaoMinutos": 60,
+  "ativo": true
+}
+
+###
+@professorCriadoId = {{criarProfessor.response.body.id}}
+
+### 17. Atualização de Professor pelo Admin (200 OK)
+PUT {{baseUrl}}/api/professores/{{professorCriadoId}}
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{
+  "nome": "Beatriz Albuquerque",
+  "materia": "Violoncelo Erudito e Camerístico",
+  "descricao": "Mestra em performance musical, aulas de técnica de arco, leitura e música de câmara.",
+  "valorHora": 140.00,
+  "duracaoMinutos": 60,
+  "ativo": true
+}
+
+### 18. Exclusão de Professor Sem Aulas Vinculadas pelo Admin (204 No Content)
+DELETE {{baseUrl}}/api/professores/{{professorCriadoId}}
+Authorization: Bearer {{tokenAdmin}}
+
+### 19. Tentativa de Excluir Professor que Possui Aulas Vinculadas (409 Conflict)
+DELETE {{baseUrl}}/api/professores/1
+Authorization: Bearer {{tokenAdmin}}
+
+### ============================================================================
+### AGENDAMENTO DE AULAS, REGRA DE NEGÓCIO (409) E PROTEÇÃO IDOR (403)
+### ============================================================================
+
+### 20. Agendar Nova Aula como Cliente A (201 Created)
+# @name criarAulaClienteA
+POST {{baseUrl}}/api/aulas
+Authorization: Bearer {{tokenClienteA}}
+Content-Type: application/json
+
+{
+  "professorId": 1,
+  "dataHoraInicio": "2026-12-15T14:00:00-03:00",
+  "observacoes": "Aula focada em dedilhado e acordes com pestana."
+}
+
+###
+@aulaCriadaId = {{criarAulaClienteA.response.body.id}}
+
+### 21. Regra de Negócio: Agendar Aula em Horário Sobreposto para o Mesmo Professor (409 Conflict)
+POST {{baseUrl}}/api/aulas
+Authorization: Bearer {{tokenClienteB}}
+Content-Type: application/json
+
+{
+  "professorId": 1,
+  "dataHoraInicio": "2026-12-15T14:30:00-03:00",
+  "observacoes": "Tentativa de agendamento em horário que conflita com a aula das 14h às 15h."
+}
+
+### 22. Criar Aula com Corpo Inválido (400 Bad Request)
+POST {{baseUrl}}/api/aulas
+Authorization: Bearer {{tokenClienteA}}
+Content-Type: application/json
+
+{
+  "professorId": 0,
+  "dataHoraInicio": "2026-12-15T16:00:00Z"
+}
+
+### 23. Listar Aulas Autenticado como Cliente A — Retorna Apenas Aulas da Ana (200 OK)
+GET {{baseUrl}}/api/aulas
+Authorization: Bearer {{tokenClienteA}}
+Accept: application/json
+
+### 24. Proteção IDOR: Cliente B Tenta Cancelar Aula do Cliente A (403 Forbidden)
+DELETE {{baseUrl}}/api/aulas/{{aulaCriadaId}}
+Authorization: Bearer {{tokenClienteB}}
+
+### 25. Cancelamento de Aula pelo Próprio Dono — Cliente A (204 No Content)
+DELETE {{baseUrl}}/api/aulas/{{aulaCriadaId}}
+Authorization: Bearer {{tokenClienteA}}
+

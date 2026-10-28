@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 namespace Aulas.Api.Dtos.Aulas;
 
 public record CriarAulaDto(
-    [property: Range(1, int.MaxValue, ErrorMessage = "O identificador do professor deve ser válido.")]
+    [Range(1, int.MaxValue, ErrorMessage = "O identificador do professor deve ser válido.")]
     int ProfessorId,
 
-    [property: Required(ErrorMessage = "A data/hora de início é obrigatória.")]
+    [Required(ErrorMessage = "A data/hora de início é obrigatória.")]
     DateTimeOffset DataHoraInicio,
 
-    [property: StringLength(500, ErrorMessage = "As observações devem ter no máximo 500 caracteres.")]
+    [StringLength(500, ErrorMessage = "As observações devem ter no máximo 500 caracteres.")]
     string? Observacoes = null);
 
 public record AulaResposta(
@@ -24,4 +24,3 @@ public record AulaResposta(
     string Observacoes,
     string Status,
     DateTime CriadoEmUtc);
-
