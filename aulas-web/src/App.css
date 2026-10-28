@@ -1,0 +1,38 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.app-conteudo {
+  flex: 1;
+}
+
+.app-rodape {
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 1rem 1.5rem;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.app-rodape__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.app-rodape__api {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  background: #f1f5f9;
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  color: #475569;
+}
