@@ -59,6 +59,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddScoped<IAuthServico, AuthServico>();
 builder.Services.AddScoped<IProfessorServico, ProfessorServico>();
+builder.Services.AddScoped<IAulaMarcadaServico, AulaMarcadaServico>();
 
 var corsOrigensConfig = builder.Configuration["Cors:Origens"];
 var origens = string.IsNullOrWhiteSpace(corsOrigensConfig)
