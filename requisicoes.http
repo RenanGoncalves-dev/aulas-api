@@ -1,7 +1,7 @@
 ### ============================================================================
 ### AULAS PARTICULARES API — Suíte Completa de Testes HTTP (REST Client VS Code)
 ### ============================================================================
-@baseUrl = http://localhost:5000
+@baseUrl = https://aulas-api-pkfu.onrender.com
 @adminEmail = admin@exemplo.com
 @adminSenha = Admin@2026SecurePassword
 @clienteAEmail = ana@exemplo.com

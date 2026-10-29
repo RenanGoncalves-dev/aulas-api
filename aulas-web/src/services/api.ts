@@ -10,7 +10,7 @@ import type {
   Usuario,
 } from '../types';
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, '') || 'http://localhost:5000';
+const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, '') || 'https://aulas-api-pkfu.onrender.com';
 const CHAVE_STORAGE = 'aulas_usuario_sessao';
 
 export class ErroApi extends Error {

@@ -1,7 +1,7 @@
 # Aulas Particulares API
 **Nicho:** Aulas particulares (música, idiomas, reforço) · **Aluno:** Renan Bernardo Gonçalves (@RenanGoncalves-dev)
-**API no ar:** https://aulas-api.onrender.com/swagger
-**Saúde e versão:** https://aulas-api.onrender.com/health · https://aulas-api.onrender.com/api/versao
+**API no ar:** https://aulas-api-pkfu.onrender.com/swagger
+**Saúde e versão:** https://aulas-api-pkfu.onrender.com/health · https://aulas-api-pkfu.onrender.com/api/versao
 **Front-end:** https://aulas-web.onrender.com
 
 ## O que a API faz
