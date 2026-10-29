@@ -2,8 +2,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f8fafc;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .app-conteudo {
@@ -11,11 +10,12 @@
 }
 
 .app-rodape {
-  border-top: 1px solid #e2e8f0;
-  background: #ffffff;
-  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-card);
+  padding: 1.1rem 1.5rem;
   font-size: 0.82rem;
-  color: #64748b;
+  color: var(--text-muted);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .app-rodape__container {
@@ -31,8 +31,9 @@
 .app-rodape__api {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   font-size: 0.78rem;
-  background: #f1f5f9;
-  padding: 0.2rem 0.55rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  padding: 0.25rem 0.65rem;
   border-radius: 6px;
-  color: #475569;
+  color: var(--text-secondary);
 }

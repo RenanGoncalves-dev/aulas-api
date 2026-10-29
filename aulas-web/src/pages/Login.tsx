@@ -1,5 +1,15 @@
 import { useState, type FormEvent } from 'react';
-import { AlertCircle, KeyRound, LogIn, Mail, User as UserIcon, UserPlus } from 'lucide-react';
+import {
+  AlertCircle,
+  Eye,
+  EyeOff,
+  KeyRound,
+  LogIn,
+  Mail,
+  Sparkles,
+  User as UserIcon,
+  UserPlus,
+} from 'lucide-react';
 import { api, ErroApi } from '../services/api';
 import type { Usuario } from '../types';
 import './Login.css';
@@ -15,6 +25,7 @@ export function Login({ onAutenticado }: LoginProps) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(false);
   const [carregando, setCarregando] = useState(false);
   const [erro, setErro] = useState<string | null>(null);
 
@@ -62,13 +73,17 @@ export function Login({ onAutenticado }: LoginProps) {
     <section className="login-page">
       <div className="login-card">
         <div className="login-card__cabecalho">
+          <span className="login-card__badge">
+            <Sparkles size={14} />
+            Acesso à Plataforma
+          </span>
           <h1 className="login-card__titulo">
             {modo === 'login' ? 'Bem-vindo de volta' : 'Criar conta de Aluno'}
           </h1>
           <p className="login-card__subtitulo">
             {modo === 'login'
-              ? 'Entre com a sua conta para agendar ou gerir as suas aulas particulares.'
-              : 'Registe-se gratuitamente para marcar aulas com os nossos professores.'}
+              ? 'Entre com a sua conta para agendar ou gerenciar suas aulas particulares.'
+              : 'Cadastre-se gratuitamente para marcar aulas com nossos professores.'}
           </p>
         </div>
 
@@ -91,7 +106,7 @@ export function Login({ onAutenticado }: LoginProps) {
             onClick={() => alternarModo('registro')}
           >
             <UserPlus size={16} />
-            <span>Registar-se</span>
+            <span>Cadastrar-se</span>
           </button>
         </div>
 
@@ -146,55 +161,63 @@ export function Login({ onAutenticado }: LoginProps) {
 
           <div className="login-campo">
             <label htmlFor="campo-senha" className="login-campo__label">
-              Palavra-passe
+              Senha
             </label>
             <div className="login-campo__input-wrap">
               <KeyRound size={17} className="login-campo__icone" />
               <input
                 id="campo-senha"
-                type="password"
+                type={mostrarSenha ? 'text' : 'password'}
                 required
                 minLength={6}
-                placeholder="Mínimo de 6 caracteres"
+                placeholder="Digite sua senha (mín. 6 caracteres)"
                 value={senha}
                 onChange={(e) => setSenha(e.target.value)}
-                className="login-campo__input"
+                className="login-campo__input login-campo__input--senha"
               />
+              <button
+                type="button"
+                className="login-campo__toggle-senha"
+                onClick={() => setMostrarSenha((v) => !v)}
+                aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
+              >
+                {mostrarSenha ? <EyeOff size={17} /> : <Eye size={17} />}
+              </button>
             </div>
           </div>
 
           <button type="submit" className="login-botao-submit" disabled={carregando}>
             {carregando
-              ? 'A processar...'
+              ? 'Autenticando...'
               : modo === 'login'
               ? 'Entrar na plataforma'
-              : 'Concluir registo'}
+              : 'Concluir cadastro'}
           </button>
         </form>
 
         <div className="login-demos">
-          <span className="login-demos__titulo">Contas de teste rápidas (Seed):</span>
+          <span className="login-demos__titulo">Contas de teste rápidas (1 clique):</span>
           <div className="login-demos__botoes">
             <button
               type="button"
               className="login-demos__chip"
               onClick={() => preencherDemo('ana@exemplo.com', 'Cliente@123')}
             >
-              Cliente Ana (ana@exemplo.com)
+              Cliente Ana
             </button>
             <button
               type="button"
               className="login-demos__chip"
               onClick={() => preencherDemo('bruno@exemplo.com', 'Cliente@123')}
             >
-              Cliente Bruno (bruno@exemplo.com)
+              Cliente Bruno
             </button>
             <button
               type="button"
               className="login-demos__chip login-demos__chip--admin"
-              onClick={() => preencherDemo('admin@exemplo.com', 'Admin@123')}
+              onClick={() => preencherDemo('admin@exemplo.com', 'Admin@2026SecurePassword')}
             >
-              Admin (admin@exemplo.com)
+              Admin
             </button>
           </div>
         </div>
@@ -202,4 +225,3 @@ export function Login({ onAutenticado }: LoginProps) {
     </section>
   );
 }
-

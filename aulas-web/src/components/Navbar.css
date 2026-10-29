@@ -2,16 +2,17 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+  background: var(--bg-navbar);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .navbar__container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,15 +32,15 @@
 }
 
 .navbar__icone-marca {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
 }
 
 .navbar__textos-marca {
@@ -49,53 +50,79 @@
 
 .navbar__titulo {
   font-size: 1.05rem;
-  font-weight: 700;
-  color: #0f172a;
+  font-weight: 800;
+  color: var(--text-primary);
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 .navbar__subtitulo {
   font-size: 0.75rem;
-  color: #64748b;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
+  background: var(--bg-subtle);
+  padding: 0.3rem;
+  border-radius: 11px;
+  border: 1px solid var(--border-color);
 }
 
 .navbar__link {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.5rem 0.9rem;
+  padding: 0.48rem 0.95rem;
   border-radius: 8px;
   border: 1px solid transparent;
   background: transparent;
-  color: #475569;
-  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .navbar__link:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 .navbar__link--ativo {
-  background: #eff6ff;
-  color: #1d4ed8;
-  border-color: #bfdbfe;
+  background: var(--bg-card);
+  color: var(--primary-soft-text);
+  border-color: var(--border-color);
+  box-shadow: var(--shadow-sm);
 }
 
 .navbar__acoes {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.navbar__botao-tema {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.48rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.navbar__botao-tema:hover {
+  border-color: var(--primary);
+  color: var(--primary-soft-text);
+  background: var(--primary-soft-bg);
 }
 
 .navbar__usuario {
@@ -113,7 +140,7 @@
 .navbar__nome-usuario {
   font-size: 0.88rem;
   font-weight: 600;
-  color: #1e293b;
+  color: var(--text-primary);
 }
 
 .navbar__badge-papel {
@@ -129,26 +156,26 @@
 }
 
 .navbar__badge-papel--admin {
-  background: #fef3c7;
-  color: #92400e;
-  border: 1px solid #fde68a;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border: 1px solid var(--warning-border);
 }
 
 .navbar__badge-papel--cliente {
-  background: #dcfce7;
-  color: #166534;
-  border: 1px solid #bbf7d0;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .navbar__botao-sair {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
-  color: #475569;
+  padding: 0.48rem 0.8rem;
+  border-radius: 9px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -156,30 +183,31 @@
 }
 
 .navbar__botao-sair:hover {
-  background: #fef2f2;
-  color: #dc2626;
-  border-color: #fecaca;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border-color: var(--danger-border);
 }
 
 .navbar__botao-entrar {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #2563eb;
-  background: #2563eb;
+  padding: 0.52rem 1.05rem;
+  border-radius: 9px;
+  border: 1px solid var(--primary);
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   color: #ffffff;
   font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
   transition: all 0.15s ease;
 }
 
 .navbar__botao-entrar:hover,
 .navbar__botao-entrar--ativo {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 720px) {
@@ -187,7 +215,8 @@
     padding: 0.65rem 1rem;
   }
 
-  .navbar__subtitulo {
+  .navbar__subtitulo,
+  .navbar__texto-tema {
     display: none;
   }
 
@@ -198,4 +227,3 @@
     white-space: nowrap;
   }
 }
-

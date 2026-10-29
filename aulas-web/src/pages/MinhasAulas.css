@@ -1,7 +1,7 @@
 .aulas-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 3.5rem;
+  padding: 2.25rem 1.5rem 3.5rem;
 }
 
 .aulas-topo {
@@ -14,15 +14,16 @@
 }
 
 .aulas-topo__titulo {
-  font-size: 1.7rem;
+  font-size: 1.75rem;
   font-weight: 800;
-  color: #0f172a;
+  color: var(--text-primary);
   margin: 0 0 0.35rem 0;
+  letter-spacing: -0.02em;
 }
 
 .aulas-topo__subtitulo {
   font-size: 0.94rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -30,18 +31,20 @@
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.55rem 0.95rem;
+  padding: 0.58rem 1rem;
   border-radius: 9px;
-  border: 1px solid #cbd5e1;
-  background: #ffffff;
-  color: #1e293b;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-primary);
   font-size: 0.86rem;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .aulas-botao-atualizar:hover:not(:disabled) {
-  background: #f8fafc;
+  border-color: var(--primary);
+  color: var(--primary-soft-text);
 }
 
 .aulas-painel-controles {
@@ -50,11 +53,12 @@
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 0.9rem 1.1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 0.95rem 1.15rem;
   margin-bottom: 1.4rem;
+  box-shadow: var(--shadow-sm);
 }
 
 .aulas-filtros {
@@ -66,33 +70,37 @@
 
 .aulas-abas-status {
   display: inline-flex;
-  background: #f1f5f9;
-  padding: 0.25rem;
-  border-radius: 9px;
+  background: var(--bg-subtle);
+  padding: 0.28rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
   gap: 0.25rem;
 }
 
 .aulas-aba-btn {
-  padding: 0.42rem 0.8rem;
+  padding: 0.44rem 0.85rem;
   border: none;
   border-radius: 7px;
   background: transparent;
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .aulas-aba-btn--ativo {
-  background: #ffffff;
-  color: #1d4ed8;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  background: var(--bg-card);
+  color: var(--primary-soft-text);
+  box-shadow: var(--shadow-sm);
 }
 
 .aulas-input-filtro {
-  padding: 0.48rem 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  padding: 0.5rem 0.85rem;
+  border-radius: 9px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-input);
+  color: var(--text-primary);
   font-size: 0.86rem;
   min-width: 240px;
 }
@@ -102,10 +110,10 @@
   align-items: center;
   gap: 0.65rem;
   flex-wrap: wrap;
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  padding: 0.5rem 0.75rem;
-  border-radius: 9px;
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
 }
 
 .aulas-idor-box__label {
@@ -114,7 +122,7 @@
   gap: 0.35rem;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #92400e;
+  color: var(--warning-text);
 }
 
 .aulas-idor-box__controles {
@@ -125,16 +133,17 @@
 
 .aulas-idor-box__input {
   width: 135px;
-  padding: 0.38rem 0.6rem;
-  border-radius: 6px;
-  border: 1px solid #fcd34d;
+  padding: 0.4rem 0.6rem;
+  border-radius: 7px;
+  border: 1px solid var(--warning-border);
   font-size: 0.82rem;
-  background: #ffffff;
+  background: var(--bg-input);
+  color: var(--text-primary);
 }
 
 .aulas-idor-box__botao {
-  padding: 0.4rem 0.7rem;
-  border-radius: 6px;
+  padding: 0.42rem 0.75rem;
+  border-radius: 7px;
   border: 1px solid #d97706;
   background: #d97706;
   color: #ffffff;
@@ -151,22 +160,22 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
+  padding: 0.85rem 1.05rem;
+  border-radius: 11px;
   font-size: 0.9rem;
   margin-bottom: 1.2rem;
 }
 
 .aulas-alerta--sucesso {
-  background: #f0fdf4;
-  border: 1px solid #bbf7d0;
-  color: #166534;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  color: var(--success-text);
 }
 
 .aulas-alerta--erro {
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-text);
 }
 
 .aulas-alerta__fechar {
@@ -179,37 +188,42 @@
 }
 
 .aulas-vazio {
-  background: #ffffff;
-  border: 1px dashed #cbd5e1;
-  border-radius: 14px;
-  padding: 3rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px dashed var(--border-strong);
+  border-radius: 16px;
+  padding: 3.2rem 1.5rem;
   text-align: center;
-  color: #64748b;
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
 .aulas-lista {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 1rem;
 }
 
 .aula-item {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 14px;
-  padding: 1.25rem 1.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.3rem 1.45rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
   flex-wrap: wrap;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.aula-item:hover {
+  border-color: var(--primary-soft-border);
 }
 
 .aula-item--cancelada {
-  background: #f8fafc;
-  opacity: 0.78;
+  background: var(--bg-muted);
+  opacity: 0.74;
 }
 
 .aula-item__principal {
@@ -221,14 +235,15 @@
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 .aula-item__id {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #475569;
-  background: #f1f5f9;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-color);
   padding: 0.18rem 0.55rem;
   border-radius: 6px;
 }
@@ -236,10 +251,10 @@
 .aula-item__materia {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #1d4ed8;
-  background: #eff6ff;
-  border: 1px solid #bfdbfe;
-  padding: 0.18rem 0.6rem;
+  color: var(--primary-soft-text);
+  background: var(--primary-soft-bg);
+  border: 1px solid var(--primary-soft-border);
+  padding: 0.18rem 0.65rem;
   border-radius: 999px;
 }
 
@@ -252,19 +267,21 @@
 }
 
 .aula-item__status--agendada {
-  background: #dcfce7;
-  color: #166534;
+  background: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
 }
 
 .aula-item__status--cancelada {
-  background: #fee2e2;
-  color: #991b1b;
+  background: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
 }
 
 .aula-item__professor {
-  font-size: 1.12rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--text-primary);
   margin: 0 0 0.5rem 0;
 }
 
@@ -274,7 +291,7 @@
   gap: 1.2rem;
   flex-wrap: wrap;
   font-size: 0.86rem;
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 .aula-item__meta {
@@ -283,15 +300,19 @@
   gap: 0.35rem;
 }
 
+.aula-item__meta strong {
+  color: var(--text-primary);
+}
+
 .aula-item__obs {
-  margin: 0.65rem 0 0 0;
+  margin: 0.7rem 0 0 0;
   font-size: 0.86rem;
   font-style: italic;
-  color: #475569;
-  background: #f8fafc;
-  padding: 0.45rem 0.75rem;
-  border-left: 3px solid #93c5fd;
-  border-radius: 4px;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  padding: 0.5rem 0.8rem;
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
 }
 
 .aula-item__acoes {
@@ -303,23 +324,22 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 0.95rem;
-  border-radius: 8px;
-  border: 1px solid #fecaca;
-  background: #fef2f2;
-  color: #dc2626;
+  padding: 0.58rem 1rem;
+  border-radius: 9px;
+  border: 1px solid var(--danger-border);
+  background: var(--danger-bg);
+  color: var(--danger-text);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: filter 0.15s ease;
 }
 
 .aula-item__botao-cancelar:hover:not(:disabled) {
-  background: #fee2e2;
+  filter: brightness(1.1);
 }
 
 .aula-item__botao-cancelar:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-

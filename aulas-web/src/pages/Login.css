@@ -3,46 +3,63 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  padding: 2.5rem 1rem;
 }
 
 .login-card {
   width: 100%;
-  max-width: 440px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  max-width: 450px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 2.25rem;
+  box-shadow: var(--shadow-lg);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .login-card__cabecalho {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.login-card__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: var(--primary-soft-bg);
+  border: 1px solid var(--primary-soft-border);
+  color: var(--primary-soft-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
 }
 
 .login-card__titulo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #0f172a;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-primary);
   margin: 0 0 0.4rem 0;
+  letter-spacing: -0.02em;
 }
 
 .login-card__subtitulo {
   font-size: 0.9rem;
-  color: #64748b;
+  color: var(--text-muted);
   margin: 0;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .login-abas {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.4rem;
-  background: #f1f5f9;
-  padding: 0.3rem;
-  border-radius: 10px;
-  margin-bottom: 1.25rem;
+  background: var(--bg-subtle);
+  padding: 0.32rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 1.35rem;
 }
 
 .login-abas__botao {
@@ -50,11 +67,11 @@
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.6rem 0.75rem;
+  padding: 0.62rem 0.75rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 9px;
   background: transparent;
-  color: #475569;
+  color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -62,19 +79,19 @@
 }
 
 .login-abas__botao--ativo {
-  background: #ffffff;
-  color: #1d4ed8;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  background: var(--bg-card);
+  color: var(--primary-soft-text);
+  box-shadow: var(--shadow-sm);
 }
 
 .login-alerta {
   display: flex;
   align-items: flex-start;
   gap: 0.6rem;
-  background: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #b91c1c;
-  padding: 0.75rem 0.9rem;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-text);
+  padding: 0.8rem 0.95rem;
   border-radius: 10px;
   font-size: 0.86rem;
   line-height: 1.4;
@@ -84,19 +101,19 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 1.15rem;
 }
 
 .login-campo {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.42rem;
 }
 
 .login-campo__label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--text-secondary);
 }
 
 .login-campo__input-wrap {
@@ -107,43 +124,66 @@
 
 .login-campo__icone {
   position: absolute;
-  left: 0.85rem;
-  color: #94a3b8;
+  left: 0.9rem;
+  color: var(--text-muted);
   pointer-events: none;
 }
 
 .login-campo__input {
   width: 100%;
-  padding: 0.68rem 0.9rem 0.68rem 2.55rem;
-  border-radius: 9px;
-  border: 1px solid #cbd5e1;
+  padding: 0.72rem 0.95rem 0.72rem 2.6rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-strong);
   font-size: 0.92rem;
-  color: #0f172a;
-  background: #ffffff;
+  color: var(--text-primary);
+  background: var(--bg-input);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-campo__input--senha {
+  padding-right: 2.6rem;
 }
 
 .login-campo__input:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.login-campo__toggle-senha {
+  position: absolute;
+  right: 0.7rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem;
+  border-radius: 6px;
+}
+
+.login-campo__toggle-senha:hover {
+  color: var(--text-primary);
 }
 
 .login-botao-submit {
-  margin-top: 0.35rem;
-  padding: 0.78rem 1rem;
+  margin-top: 0.4rem;
+  padding: 0.82rem 1rem;
   border: none;
-  border-radius: 9px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   color: #ffffff;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3);
+  transition: all 0.15s ease;
 }
 
 .login-botao-submit:hover:not(:disabled) {
-  opacity: 0.95;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
 .login-botao-submit:disabled {
@@ -152,55 +192,53 @@
 }
 
 .login-demos {
-  margin-top: 1.5rem;
-  padding-top: 1.2rem;
-  border-top: 1px dashed #e2e8f0;
+  margin-top: 1.6rem;
+  padding-top: 1.25rem;
+  border-top: 1px dashed var(--border-strong);
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .login-demos__titulo {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 
 .login-demos__botoes {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 
 .login-demos__chip {
-  font-size: 0.78rem;
+  flex: 1;
+  font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.38rem 0.65rem;
-  border-radius: 6px;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  color: #334155;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .login-demos__chip:hover {
-  background: #eff6ff;
-  border-color: #93c5fd;
-  color: #1d4ed8;
+  background: var(--primary-soft-bg);
+  border-color: var(--primary-soft-border);
+  color: var(--primary-soft-text);
 }
 
 .login-demos__chip--admin {
-  background: #fffbeb;
-  border-color: #fde68a;
-  color: #92400e;
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+  color: var(--warning-text);
 }
 
 .login-demos__chip--admin:hover {
-  background: #fef3c7;
-  border-color: #fcd34d;
-  color: #78350f;
+  filter: brightness(1.1);
 }
-

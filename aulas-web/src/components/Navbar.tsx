@@ -1,4 +1,14 @@
-import { BookOpen, Calendar, GraduationCap, LogIn, LogOut, Shield, User as UserIcon } from 'lucide-react';
+import {
+  BookOpen,
+  Calendar,
+  GraduationCap,
+  LogIn,
+  LogOut,
+  Moon,
+  Shield,
+  Sun,
+  User as UserIcon,
+} from 'lucide-react';
 import type { Usuario } from '../types';
 import './Navbar.css';
 
@@ -7,11 +17,20 @@ export type AbaNavegacao = 'professores' | 'aulas' | 'login';
 interface NavbarProps {
   usuario: Usuario | null;
   abaAtiva: AbaNavegacao;
+  modoEscuro: boolean;
+  onAlternarTema: () => void;
   onMudarAba: (aba: AbaNavegacao) => void;
   onLogout: () => void;
 }
 
-export function Navbar({ usuario, abaAtiva, onMudarAba, onLogout }: NavbarProps) {
+export function Navbar({
+  usuario,
+  abaAtiva,
+  modoEscuro,
+  onAlternarTema,
+  onMudarAba,
+  onLogout,
+}: NavbarProps) {
   const ehAdmin = usuario?.papel?.toLowerCase() === 'admin';
 
   return (
@@ -54,6 +73,17 @@ export function Navbar({ usuario, abaAtiva, onMudarAba, onLogout }: NavbarProps)
         </nav>
 
         <div className="navbar__acoes">
+          <button
+            type="button"
+            className="navbar__botao-tema"
+            onClick={onAlternarTema}
+            title={modoEscuro ? 'Mudar para modo claro' : 'Mudar para modo escuro'}
+            aria-label="Alternar tema claro/escuro"
+          >
+            {modoEscuro ? <Sun size={18} /> : <Moon size={18} />}
+            <span className="navbar__texto-tema">{modoEscuro ? 'Claro' : 'Escuro'}</span>
+          </button>
+
           {usuario ? (
             <div className="navbar__usuario">
               <div className="navbar__info-usuario">
@@ -72,7 +102,7 @@ export function Navbar({ usuario, abaAtiva, onMudarAba, onLogout }: NavbarProps)
                 type="button"
                 className="navbar__botao-sair"
                 onClick={onLogout}
-                title="Terminar sessão"
+                title="Encerrar sessão"
               >
                 <LogOut size={16} />
                 <span>Sair</span>
@@ -85,7 +115,7 @@ export function Navbar({ usuario, abaAtiva, onMudarAba, onLogout }: NavbarProps)
               onClick={() => onMudarAba('login')}
             >
               <LogIn size={16} />
-              <span>Entrar / Registar</span>
+              <span>Entrar / Cadastrar</span>
             </button>
           )}
         </div>
@@ -93,4 +123,3 @@ export function Navbar({ usuario, abaAtiva, onMudarAba, onLogout }: NavbarProps)
     </header>
   );
 }
-
